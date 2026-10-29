@@ -1,0 +1,50 @@
+.navbar{
+    background-color: green;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar a{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar button{
+    background-color: white;
+    color: green;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#menu {
+    display: none;
+}
+
+@media (max-width: 768px){
+    .navbar{
+        flex-direction: column;
+    }
+    .navbar a{
+        margin: 10px 0;
+    }
+    .navbar button{
+        margin: 10px 0;
+    }
+    .navbar #menu{
+        display: block;
+    }
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
+
