@@ -1,4 +1,4 @@
-🏡 Immobilière App - Plateforme Full-Stack d'Annonces ImmobilièresUne application web full-stack moderne pour la recherche, la gestion et la réservation de visites de biens immobiliers (vente et location).🏗️ Architecture & Stack TechniqueLe projet est structuré sous forme de monorepo (ou deux dossiers distincts client et server) :Front-end (React) :React.js (avec React Router pour la navigation)Gestion d'état : Redux Toolkit ou Context APIStyling : Tailwind CSS / Material UIRequêtes HTTP : AxiosBack-end (Node.js & Express) :Node.js & Express.js (API RESTful)Authentification : JSON Web Tokens (JWT) & BcryptSécurité : Cors, Helmet, Express-rate-limitBase de données (PostgreSQL) :PostgreSQLAccès aux données : Driver PostgreSQL natif (pg / node-postgres) avec requêtes SQL préparées (Sans ORM)📌 Fonctionnalités Principales🌐 Côté Utilisateur / Client (React UI)Page d'accueil & Recherche : Barre de recherche dynamique avec filtres avancés (prix, surface, ville, adresse, type de bien, nombre de pièces).Fiche Détail du Bien : Galerie photo, caractéristiques complètes, formulaire de prise de rendez-vous.Espace Client : Gestion des favoris, suivi des demandes de visite en cours.Espace Agent / Propriétaire : Dashboard d'administration pour ajouter, modifier ou supprimer des annonces et gérer les rendez-vous.⚡ Côté API Back-end (Express & PostgreSQL)Authentification JWT sécurisée et gestion des rôles (Client, Agent, Admin).CRUD complet des biens immobiliers avec requêtes SQL optimisées.Gestion de l'upload d'images (Cloudinary / Multer).Recherche et filtrage dynamiques des annonces via des clauses SQL WHERE.Prise de rendez-vous et suivi des demandes.📁 Structure du Projetimmobilier-app/
+🏡 Immobilière App - Plateforme Full-Stack d'Annonces ImmobilièresUne application web full-stack moderne pour la recherche, la gestion et la réservation de visites de biens immobiliers (vente et location).🏗️ Architecture & Stack TechniqueLe projet est structuré sous forme de monorepo (ou deux dossiers distincts client et server) :Front-end (React) :React.js (avec React Router pour la navigation)Gestion d'état : Redux Toolkit ou Context APIStyling : Tailwind CSS / Material UIRequêtes HTTP : AxiosBack-end (Node.js & Express) :Node.js & Express.js (API RESTful)Authentification : JSON Web Tokens (JWT) & BcryptSécurité : Cors, Helmet, Express-rate-limitBase de données (PostgreSQL) :PostgreSQLAccès aux données : Driver PostgreSQL natif (pg / node-postgres) avec requêtes SQL préparées (Sans ORM)📌 Fonctionnalités Principales🌐 Côté Utilisateur / Client (React UI)Page d'accueil & Recherche : Barre de recherche dynamique avec filtres avancés (prix, surface, ville, adresse, type de bien, nombre de pièces).Fiche Détail du Bien : Galerie photo, caractéristiques complètes, formulaire de prise de rendez-vous.Espace Client : Gestion des favoris, suivi des demandes de visite en cours.Espace Agent / Propriétaire : Dashboard d'administration pour ajouter, modifier ou supprimer des annonces et gérer les rendez-vous.⚡ Côté API Back-end (Express & PostgreSQL)Authentification JWT sécurisée et gestion des rôles (Client, Agent, Admin).CRUD complet des biens immobiliers avec requêtes SQL optimisées.Gestion de l'upload d'images (Cloudinary / Multer).Recherche et filtrage dynamiques des annonces via des clauses SQL WHERE.Prise de rendez-vous et suivi des demandes.📁 Structure du ProjetPlaintextimmobilier-app/
 ├── client/                   # Front-end React
 │   ├── src/
 │   │   ├── assets/           # Images, icônes, styles globaux
@@ -18,26 +18,26 @@
     ├── database/             # Fichiers d'initialisation SQL (`schema.sql`)
     ├── server.js             # Point d'entrée de l'API Express
     └── package.json
-🚀 Installation et DémarragePrérequisNode.js (v16+)PostgreSQL installé et démarré1. Cloner le projetgit clone https://github.com/votre-utilisateur/immobilier-app.git
+🚀 Installation et DémarragePrérequisNode.js (v16+)PostgreSQL installé et démarré1. Cloner le projetBashgit clone https://github.com/votre-utilisateur/immobilier-app.git
 cd immobilier-app
-2. Configuration du Back-end (Server)cd server
+2. Configuration du Back-end (Server)Bashcd server
 npm install
-Créez un fichier .env dans le dossier server/ :PORT=5000
+Créez un fichier .env dans le dossier server/ :Extrait de codePORT=5000
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=votre_mot_de_passe
 DB_NAME=real_estate_db
 JWT_SECRET=votre_cle_secrete_jwt
-Initialisez la base de données avec le fichier schema.sql :psql -U postgres -d real_estate_db -f database/schema.sql
-Lancez le serveur :npm run dev
+Initialisez la base de données avec le fichier schema.sql :Bashpsql -U postgres -d real_estate_db -f database/schema.sql
+Lancez le serveur :Bashnpm run dev
 # L'API Express tournera sur http://localhost:5000
-3. Configuration du Front-end (Client React)Dans un autre terminal :cd client
+3. Configuration du Front-end (Client React)Dans un autre terminal :Bashcd client
 npm install
-Créez un fichier .env dans le dossier client/ :VITE_API_URL=http://localhost:5000/api
-Lancer l'application React :npm run dev
+Créez un fichier .env dans le dossier client/ :Extrait de codeVITE_API_URL=http://localhost:5000/api
+Lancer l'application React :Bashnpm run dev
 # Le client React sera accessible sur http://localhost:5173
-🗄️ Schéma de la Base de Données (schema.sql)CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+🗄️ Schéma de la Base de Données (schema.sql)SQLCREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Table des utilisateurs
 CREATE TABLE users (
@@ -86,7 +86,7 @@ CREATE TABLE appointments (
     message TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
-💻 Exemple d'interaction avec PostgreSQL (pg)Voici comment les requêtes SQL paramétrées sont gérées sans ORM (dans config/db.js et les contrôleurs) pour éviter les injections SQL :// config/db.js
+💻 Exemple d'interaction avec PostgreSQL (pg)Voici comment les requêtes SQL paramétrées sont gérées sans ORM (dans config/db.js et les contrôleurs) pour éviter les injections SQL :JavaScript// config/db.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -100,7 +100,7 @@ const pool = new Pool({
 module.exports = {
   query: (text, params) => pool.query(text, params),
 };
-// controllers/propertyController.js
+JavaScript// controllers/propertyController.js
 const db = require('../config/db');
 
 // Exemple de récupération paramétrée des biens
